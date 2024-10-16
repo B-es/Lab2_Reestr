@@ -1,10 +1,9 @@
-import Head from 'next/head'
-import Image from 'next/image'
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { Button, ThemeProvider, Form } from 'react-bootstrap';
 import { useEffect, useState } from "react";
 import Web3 from "web3";
 
 import PosterJson from '../../poster-contract/build/contracts/Poster.json' with {type: 'json'};
-import { jsx } from 'react/jsx-runtime';
 
 const abi = [...PosterJson.abi];
 
@@ -33,7 +32,8 @@ export default function Home() {
             toBlock: 'latest'
         }, function(error, event){ console.log(event); })
         
-        newPostEvent
+        try {
+            newPostEvent
         .on('data', async function(event){
             await getMsgs(contract)
             console.log(event);
@@ -42,6 +42,10 @@ export default function Home() {
             console.log("Работает")
         })
         .on('error', console.error);
+        }
+        catch {
+            console.log('Ошибка на on')
+        }
         
         
     }
@@ -75,33 +79,37 @@ export default function Home() {
 
     if (userAddress) {
         return (
-        <div>
-            <div style={{display: 'flex', flexDirection: 'column', width: '100%', alignItems: 'center'}}>
-                <address>userId: {userAddress}</address>
-                <label htmlFor={text}>Введи текст:</label>
-                <input id='text' onChange={changeText}></input>
-                <label htmlFor={tag}>Введи тег:</label>
-                <input tag='tag' onChange={changeTag}></input>
-                <button onClick={postText}>post</button>
-            </div>
-            <div style={{display: 'flex', flexDirection: 'column', width: '100%', alignItems: 'center'}}> 
-                <h1>
-                    Прошлые сообщения
-                </h1>
-                {pastMsgs.map((msg, index) => (
-                    <div key={msg[0] + index}>
-                    <h3>user: {msg.user}</h3>
-                    <h3>text: {msg.content}</h3>
-                    <h3>tag: {msg.tag}</h3>
+            <div>
+                <div id='container'>
+                    <div className='innerContainer'>
+                        <form id='inputForm'>
+                            <address>userId: {userAddress}</address>
+                            <Form.Control size="sm" type="text" placeholder="Введи текст" onChange={changeText}/>
+                            <Form.Control size="sm" type="text" placeholder="Введи тег" onChange={changeTag}/>
+                            <Button variant='danger' onClick={postText}>Отправить пост</Button>
+                        </form>
                     </div>
-                ))}
+                    <div className='innerContainer'> 
+                        <h1>
+                            Прошлые сообщения
+                        </h1>
+                        <div id='msgs'>
+                            {pastMsgs.map((msg, index) => (
+                                <div className='pastMsg' key={msg[0] + index}>
+                                    <h5>user: {msg.user}</h5>
+                                    <h5>text: {msg.content}</h5>
+                                    <h5>tag: {msg.tag}</h5>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
         )
     }
     return (
-        <div>
-            <button onClick={handleConnect}>Connect</button>
+        <div className='position-absolute top-50 start-50 translate-middle'>
+            <Button variant='danger' onClick={handleConnect}>Подключение</Button>
         </div>
     )
 }
