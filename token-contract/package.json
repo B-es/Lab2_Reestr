@@ -7,10 +7,9 @@
     "test": "test"
   },
   "scripts": {
-    "test": "truffle test",
-    "test:polygon": "truffle test --network=$npm_config_network",
-    "compile:polygon": "truffle compile",
-    "migrate:polygon": "truffle migrate --network=$npm_config_network"
+    "test": "truffle test --network=$npm_config_network",
+    "compile": "truffle compile",
+    "migrate": "truffle migrate --network=$npm_config_network"
   },
   "repository": {
     "type": "git",
@@ -32,7 +31,9 @@
   "devDependencies": {
     "@maticnetwork/maticjs": "^2.0.40",
     "@truffle/hdwallet-provider": "^1.4.2",
-    "dotenv": "^9.0.0",
-    "truffle-plugin-verify": "^0.6.7"
+    "dotenv": "^9.0.0"
+  },
+  "dependencies": {
+    "@openzeppelin/contracts": "^5.1.0"
   }
 }

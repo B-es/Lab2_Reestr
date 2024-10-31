@@ -49,6 +49,7 @@ html {
 #inputForm {
   display: flex;
   flex-direction: column;
+  width: 100%;
   /* justify-content: center; */
 }
 
@@ -63,8 +64,11 @@ html {
 #container {
   display: flex;
   align-content: center;
+  align-items: center;
   justify-content: center;
   justify-items: center;
+  flex-direction: column;
+  word-wrap:break-word;
 }
 
 .innerContainer {
