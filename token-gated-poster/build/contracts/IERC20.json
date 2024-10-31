@@ -1120,7 +1120,7 @@
   },
   "networks": {},
   "schemaVersion": "3.4.16",
-  "updatedAt": "2024-10-30T08:54:11.332Z",
+  "updatedAt": "2024-10-31T20:09:31.934Z",
   "devdoc": {
     "details": "Interface of the ERC-20 standard as defined in the ERC.",
     "events": {
@@ -1167,7 +1167,7 @@
       "id": "0x2cdc5c5f756f555319272af6740217ecb0d9451b44e748689b42eb518eb5ef1b"
     },
     "contract": {
-      "id": "0x9fd918932f35aa95cb1bdf12d3c550a6a814dcb51f1f92f801506e93ec7f5305"
+      "id": "0x98b68974a36767471ca87d3e53d91311f226f1b0406d50d60fc9848c993f2e78"
     }
   }
 }

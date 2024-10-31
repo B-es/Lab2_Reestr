@@ -6,7 +6,6 @@ const mnemonic = process.env["MNEMONIC"];
 const infuraProjectId = process.env["INFURA_PROJECT_ID"];
 
 module.exports = {
-
   /**
   * contracts_build_directory tells Truffle where to store compiled contracts
   */
@@ -40,19 +39,19 @@ module.exports = {
       chainId: 137
     },
     //polygon Infura testnet
-    polygon_mumbai: {
+    polygon_amoy: {
       provider: () => new HDWalletProvider({
         mnemonic: {
           phrase: mnemonic
         },
         providerOrUrl:
-         "https://polygon-mumbai.infura.io/v3/" + infuraProjectId
+         "wss://polygon-amoy.drpc.org/" + infuraProjectId
       }),
-      network_id: 80001,
+      network_id: 80002,
       confirmations: 2,
       timeoutBlocks: 200,
       skipDryRun: true,
-      chainId: 80001
+      chainId: 80002
     }
   },
 
@@ -64,10 +63,15 @@ module.exports = {
   // Configure your compilers
   compilers: {
     solc: {
-        version: "0.8.20"
+      version: "0.8.20"
     }
   },
   db: {
     enabled: true
+  },
+
+  plugins: ['truffle-plugin-verify'],
+  api_keys: {
+    polygonscan: '1D93F8MW4UCFW2T5DK23Z2R2SP3EHBGMP8'
   }
 }
